@@ -45,4 +45,7 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
 
+  # reload routes each time you run Spork (I added this)
+  load "#{Rails.root}/config/routes.rb"
+
 end
