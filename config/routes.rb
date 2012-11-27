@@ -1,13 +1,15 @@
 SampleApp::Application.routes.draw do
-  root to: 'static_pages#home'
+  get "users/new"
 
-  match '/signup',   to: 'users#new'
+  root to: 'static_pages#home'  
+
+  match '/signup',  to: 'users#new'#,              as: 'signup'
   # The #new rule is necessary, but not REST convention,
   # will be removed in ch 7.1.2
 
-  match '/help',    to: 'static_pages#help',      as: 'help'
-  match '/about',   to: 'static_pages#about',     as: 'about'
-  match '/contact', to: 'static_pages#contact',   as: 'contact'
+  match '/help',    to: 'static_pages#help'#,      as: 'help'
+  match '/about',   to: 'static_pages#about'#,     as: 'about'
+  match '/contact', to: 'static_pages#contact'#,   as: 'contact'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
