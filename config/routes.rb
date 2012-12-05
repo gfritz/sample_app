@@ -1,8 +1,10 @@
 SampleApp::Application.routes.draw do
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
-  root to: 'static_pages#home'  
+  root to: 'static_pages#home'
 
+  match '/signin',  to: 'sessions#new'
   match '/signup',  to: 'users#new'#,              as: 'signup'
   # The #new rule is necessary, but not REST convention,
   # will be removed in ch 7.1.2
@@ -10,6 +12,7 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'#,      as: 'help'
   match '/about',   to: 'static_pages#about'#,     as: 'about'
   match '/contact', to: 'static_pages#contact'#,   as: 'contact'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
