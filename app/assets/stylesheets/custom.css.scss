@@ -173,6 +173,7 @@ input {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
 
 /* users index */
 
@@ -187,5 +188,4 @@ input {
       border-bottom: 1px solid $grayLighter;
     }
   }
-}
 }
