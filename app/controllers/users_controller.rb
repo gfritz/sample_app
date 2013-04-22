@@ -22,6 +22,11 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if @user.update_attributes(params[:user])
 			# Handle a successful update.
+			flash[:success] = "Profile updated"
+			# Sign in resets the remember token, invalidating the user session
+			# Hijacked sessions automatically expire when user info is changed
+			sign_in @user
+			redirect_to @user
 		else
 			render 'edit'
 		end
