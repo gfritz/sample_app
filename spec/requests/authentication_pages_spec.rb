@@ -42,4 +42,22 @@ describe "Authentication" do
 			end
 		end
 	end
+
+	# Testing that the edit and update actions are protected
+	describe "authorization" do
+
+		describe "for non-signed-in users" do
+			let(:user) { FactoryGirl.create(:user) }
+
+			describe "in the Users controller" do
+				before { visit edit_user_path(user) }
+				it { should have_selector('title', text: 'Sign in') }
+			end
+
+			describe "submitting to the update action" do
+				before { put user_path(user) }
+				specify { response.should redirect_to(signin_path) }
+			end
+		end
+	end
 end

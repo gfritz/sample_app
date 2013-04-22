@@ -67,7 +67,10 @@ describe "User pages" do
 	# Tests for the user edit page.
 	describe "edit" do
 		let(:user) { FactoryGirl.create(:user) }
-		before { visit edit_user_path(user) }
+		before do
+			sign_in user
+			visit edit_user_path(user) 
+		end
 
 		# Edit page basic requirements
 		describe "page" do
