@@ -46,11 +46,17 @@ describe "Authentication" do
 		end
 	end
 
-	# Testing that the edit and update actions are protected
 	describe "authorization" do
 
 		describe "for non-signed-in users" do
 			let(:user) { FactoryGirl.create(:user) }
+
+			describe "Certain navigation links should not appear" do
+				it "should not have Profile or Settings links" do
+					page.should_not have_link('Profile')
+					page.should_not have_link('Settings')
+				end
+			end
 
 			describe "when attempting to visit a protected page" do
 				before do
@@ -72,7 +78,6 @@ describe "Authentication" do
 				before { visit edit_user_path(user) }
 				it { should have_selector('title', text: 'Sign in') }
 			
-				# Testing that the index action is protected
 				describe "visiting the user index" do
 					before { visit users_path }
 					it { should have_selector('title', text: 'Sign in') }
