@@ -13,12 +13,11 @@ require 'spec_helper'
 
 describe User do
 
-	#this is run before each example, so a new user is obtained after every check
 	before do
 		@user = User.new(name: "Example User", email: "user@example.com",
 		password: "foobar", password_confirmation: "foobar")
 	end
-	# @user is the assumed object to be checked
+
 	subject { @user }
 
 	it { should respond_to(:name) }
@@ -32,6 +31,14 @@ describe User do
 
 	it { should be_valid }
 	it { should_not be_admin }
+
+	describe "accessible attributes" do
+		it "should not allow access to admin" do
+			expect do
+				@user.update_attributes(:admin => true)
+			end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+		end
+	end
 
 	describe "with admin attribute set to 'true'" do
 		before do
