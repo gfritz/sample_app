@@ -6,9 +6,11 @@
         <%= gravatar_for @user, size: 40 %>
         <%= @user.name %>
         <br>
+        <% if current_user?(@user) %>
         <h6>
           <a href="http://gravatar.com/emails" target="_blank">change picture</a>
         </h6>
+        <% end %>
       </h1>
     </section>
     <section>
