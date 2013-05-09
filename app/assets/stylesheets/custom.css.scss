@@ -11,6 +11,14 @@ $railsMaroon: #981A21;
   box-sizing: border-box;
 }
 
+/* print */
+// hide pagination links
+@media print {
+  .pagination {
+    display: none;
+  }
+}
+
 /* universal */
 
 html {
